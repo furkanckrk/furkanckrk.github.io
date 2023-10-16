@@ -1,0 +1,478 @@
+
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  <meta charset="UTF-8">
+  
+  
+  
+
+  <title>FURKAN ÇEKEREK</title>
+  
+  
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.0.4/tailwind.min.css'>
+  
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Nunito&family=Press+Start+2P&display=swap');
+
+body { 
+  font-family: 'Nunito', cursive;
+  height: 100vh;
+  overflow-y: hidden;
+  cursor: normal;
+}
+
+
+h1 {
+  font-family: 'Press Start 2P', cursive;
+  font-style: italic;
+  text-shadow: 4px 4px black, 84px 84px 18px #6c6f7d25;
+  font-size: 132px;
+  -webkit-user-select: none;
+  -moz-user-select: none; 
+  user-select: none;
+  color: white;
+  height: 50%;
+  animation: glitch1 5s step-end infinite;
+  animation-delay: 4s;
+  text-align: center;
+  font-weight: 400;
+  margin: 0;
+  line-height: 0;
+}
+
+h1:nth-child(2) {
+  position: absolute;
+  text-shadow: unset;
+  color: cyan;
+  animation: glitch2 step-end 2.5s infinite;
+}
+
+h1:nth-child(3) {
+  position: absolute;
+  text-shadow: unset;
+  color: magenta;
+  animation: glitch3 step-end 4s infinite;
+}
+
+h2 {
+  text-decoration: line-through;
+  color: grey;
+  font-style: italic;
+  position: relative;
+  display: inline-block;
+  text-decoration: none;
+  color: black;
+  transition: all 0.3s ease-in-out;
+  text-align: center;
+  line-height: 2;
+}
+
+h2:after {
+  content: "";
+  display: block;
+  position: absolute;
+  bottom: 0px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 4'%3E%3Cstyle type='text/css'%3E.line-anime{animation:shift 0.3s linear infinite; transform:translateY(10px);}@keyframes shift {from {transform:translateX(0);}to {transform:translateX(-20px);}}%3C/style%3E%3Cpath fill='none' stroke='%23FF00FF' stroke-width='1' class='line-anime' d='M0,3.5 c 5,0,5,-3,10,-3 s 5,3,10,3 c 5,0,5,-3,10,-3 s 5,3,10,3'/%3E%3C/svg%3E");
+  height: 4px;
+  width: 320px;
+  transition: all 1.5s ease-in-out;
+}
+
+.scene {
+  width: 110vw;
+  height: 100vh;
+  perspective: 55vw;
+  background: rgb(63,94,251);
+background: linear-gradient(95deg, rgba(63,94,251,0.8253676470588236) 0%, rgba(88,178,214,0.8113620448179272) 27%, rgba(157,117,183,0.8393732492997199) 59%, rgba(94,174,158,0.6348914565826331) 73%, rgba(193,69,160,0.5396533613445378) 100%);
+}
+
+.cube {
+  width: 110vw;
+  height: 120vh;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 4s ease;
+}
+
+.show-front {
+  transform: translateZ(20vw) rotateY(-150deg); 
+}
+
+.show-back {
+  transform: translateZ(25vw) rotateY(-160deg); 
+}
+
+.show-right  { 
+  transform: translateZ(60vw) rotateY(45deg); 
+}
+
+.show-left { 
+  transform: translateZ(60vw) rotateY(75deg); 
+}
+
+.cube__face {
+  position: absolute;
+  width: 120vw;
+  height: 120vh;
+  line-height: 200px;
+  font-size: 40px;
+  font-weight: bold;
+  text-align: center;
+  outline: 10px solid lightgrey;
+  transform: translateZ(60vw); 
+}
+
+.cube__face--right  { 
+  transform: rotateY(90deg) translateZ(60vw) scale(-1, 1); 
+  background: black;
+  color: lightgreen;
+  font-size: 20px;
+  text-align: left;
+  padding: 100px;
+  overflow: scroll;
+  line-height: 4rem; 
+  cursor: text;
+}
+.cube__face--back   { 
+  transform: rotateY(180deg) translateZ(60vw) scale(-1, 1); 
+  background: url("https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExY2QwOTk3OGI1YWJlY2NiYmYxMDAyMzc5OWRkOTVmZTYzYzMwYzdhOCZlcD12MV9pbnRlcm5hbF9naWZzX2dpZklkJmN0PXM/UuApvl9rARf6fruM8O/giphy.gif") repeat center;
+  background-size: contain;
+  cursor: crosshair;
+}
+
+.cube__face--left   { 
+  transform: rotateY(-90deg) translateZ(60vw) scale(-1, 1); 
+  background: url("https://www.kali.org/blog/kali-linux-2019-4-release/images/kali-preview-boot.gif") repeat center;
+  background-size: contain;
+  cursor: crosshair;
+  text-align: left;
+  font-size: 52px;
+}
+
+.sign {
+  transform: translate(0, 0);
+  transition: 1s;
+}
+
+.info {
+  border: 10px solid #302a1c;
+  outline: 10px solid #ede63d;
+  padding: 20px;
+  background: #ede63d;
+  box-shadow: 16px 0px grey, 16px 0px grey, 80px 35px 18px #6c6f7d25;
+  position: relative;
+}
+
+.pole {
+  width: 40px;
+  height: 200vh; 
+  top: -40px;
+  position: absolute;
+  left: 335px;
+  background: rgb(193,193,193);
+background: linear-gradient(90deg, rgba(193,193,193,1) 0%, rgba(255,255,255,1) 33%, rgba(200,200,200,1) 85%, rgba(149,149,149,1) 100%);
+  z-index: 0;
+  box-shadow: 80px 35px 18px #6c6f7d25;
+}
+
+.cube__face--front   { 
+  transform: rotateY(0deg) translateZ(60vw) scale(-1, 1); 
+  background: url("https://images.photowall.com/products/52178/old-white-brick-wall.jpg?h=380&q=75") repeat center;
+  background-size: contain;
+}
+
+.terminal {
+  font-family: 'Press Start 2P', cursive;
+}
+
+.tag {
+  background-image: url("https://images.vexels.com/media/users/3/189739/isolated/preview/88f7ec57622aaaac3a189f5b4dd06e70-graffiti-right-arrow-by-vexels.png"); 
+  background-size: contain;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 0;
+    padding-top: 4%;
+    opacity: 0.9;
+    margin-left: 17vw;
+    margin-top: 10vw;
+    cursor: pointer;
+  position: relative;
+}
+
+.dir {
+  display: inline-block;
+  color: lightblue;
+}
+
+.terminal-text {
+  display: inline-block;
+  color: white;
+  font-weight: 200;
+}
+
+.terminal-end {
+  position: relative;
+  display: inline-block;
+  line-height: 24px;
+  min-width: 360px;
+}
+
+.terminal-end::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  margin-left: 15px;
+  display: inline-block;
+  background-color: lightgrey;
+  vertical-align: top;
+  width: 18px;
+  height: 24px;
+  -webkit-animation: blink 1s step-end infinite;
+  animation: blink 1s step-end infinite;
+}
+
+
+@-webkit-keyframes blink {
+  0% { opacity: 1.0; }
+  50% { opacity: 0.0; }
+  100% { opacity: 1.0; }
+}
+
+@keyframes blink {
+  0% { opacity: 1.0; }
+  50% { opacity: 0.0; }
+  100% { opacity: 1.0; }
+}
+
+
+@keyframes glitch1 {
+  0% {
+    transform: none;
+    opacity: 1;
+  }
+  7% {
+    transform: skew(-0.5deg, -0.9deg);
+    opacity: 0.75;
+  }
+  10% {
+    transform: none;
+    opacity: 1;
+  }
+  27% {
+    transform: none;
+    opacity: 1;
+  }
+  30% {
+    transform: skew(0.8deg, -0.1deg);
+    opacity: 0.75;
+  }
+  35% {
+    transform: none;
+    opacity: 1;
+  }
+  52% {
+    transform: none;
+    opacity: 1;
+  }
+  55% {
+    transform: skew(-1deg, 0.2deg);
+    opacity: 0.75;
+  }
+  50% {
+    transform: none;
+    opacity: 1;
+  }
+  72% {
+    transform: none;
+    opacity: 1;
+  }
+  75% {
+    transform: skew(0.4deg, 1deg);
+    opacity: 0.75;
+  }
+  80% {
+    transform: none;
+    opacity: 1;
+  }
+  100% {
+    transform: none;
+    opacity: 1;
+  }
+}
+
+@keyframes glitch2 {
+  0% {
+    transform: none;
+    opacity: 0.25;
+  }
+  7% {
+    transform: translate(-2px, -3px);
+    opacity: 0.5;
+  }
+  10% {
+    transform: none;
+    opacity: 0.25;
+  }
+  27% {
+    transform: none;
+    opacity: 0.25;
+  }
+  30% {
+    transform: translate(-5px, -2px);
+    opacity: 0.5;
+  }
+  35% {
+    transform: none;
+    opacity: 0.25;
+  }
+  52% {
+    transform: none;
+    opacity: 0.25;
+  }
+  55% {
+    transform: translate(-5px, -1px);
+    opacity: 0.5;
+  }
+  50% {
+    transform: none;
+    opacity: 0.25;
+  }
+  72% {
+    transform: none;
+    opacity: 0.25;
+  }
+  75% {
+    transform: translate(-2px, -6px);
+    opacity: 0.5;
+  }
+  80% {
+    transform: none;
+    opacity: 0.25;
+  }
+  100% {
+    transform: none;
+    opacity: 0.25;
+  }
+}
+
+@keyframes glitch3 {
+  0% {
+    transform: none;
+    opacity: 0.25;
+  }
+  7% {
+    transform: translate(2px, 3px);
+    opacity: 0.5;
+  }
+  10% {
+    transform: none;
+    opacity: 0.25;
+  }
+  27% {
+    transform: none;
+    opacity: 0.25;
+  }
+  30% {
+    transform: translate(5px, 2px);
+    opacity: 0.5;
+  }
+  35% {
+    transform: none;
+    opacity: 0.25;
+  }
+  52% {
+    transform: none;
+    opacity: 0.25;
+  }
+  55% {
+    transform: translate(5px, 1px);
+    opacity: 0.5;
+  }
+  50% {
+    transform: none;
+    opacity: 0.25;
+  }
+  72% {
+    transform: none;
+    opacity: 0.25;
+  }
+  75% {
+    transform: translate(2px, 6px);
+    opacity: 0.5;
+  }
+  80% {
+    transform: none;
+    opacity: 0.25;
+  }
+  100% {
+    transform: none;
+    opacity: 0.25;
+  }
+}
+</style>
+
+  
+  
+  
+</head>
+
+<body>
+  <div class="container">
+  <div class="scene flex justify-center items-center">
+    <div class="cube">
+      <div class="cube__face cube__face--front flex justify-center items-center" onclick="changeSide('back')"><div class="h-1/2 flex flex-col justify-space"><h1>FURKANCEKEREK</h1><h1>FURKANCEKEREK</h1><h1>FURKANCEKEREK</h1><div class="flex justify-center"><h2>Web SEC. and cyber securıty</h2></div></div>
+      </div>
+      <div class="cube__face cube__face--back" onclick="changeSide('back')"></div>
+      <div class="cube__face cube__face--right" onclick="changeSide('left')">
+        <div class="terminal">
+          <div class="terminal-text">coder FURKAN</div>
+          <br>
+          → <div class="dir">~</div> <div class="terminal-text">cd iletisim</div>
+          <br>
+          → <div class="dir">iletisim</div> <div class="terminal-text">ls</div>
+          <br>
+          <div class="dir">INSTAGRAM;furkan_cekerek0</div> <br>
+          → <div class="dir terminal-end">  </div>
+        </div>
+      </div>
+      <div class="cube__face cube__face--left text-gray-700 flex justify-start items-center" onclick="changeSide('right')">
+        <div class="sign">
+          <div class="info leading-loose text-center ml-48 z-10">
+            PHP<br>
+            SQL<br>
+            PYTHON<br>
+            JavaScript<br> 
+            CSS<br>
+          </div>
+          <span class="pole rounded-lg"></span>
+        </div>
+        <div class="tag h-24 w-24"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+      <script id="rendered-js" >
+var cube = document.querySelector('.cube');
+var currentClass = 'back';
+
+function changeSide(e) {
+  var showClass = 'show-' + e;
+  if ( currentClass ) {
+    cube.classList.remove( currentClass );
+  }
+  cube.classList.add( showClass );
+  currentClass = showClass;
+}
+// set initial side
+changeSide('back');
+    </script>
+
+  
+</body>
+
+</html>
